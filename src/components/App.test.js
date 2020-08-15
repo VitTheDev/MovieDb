@@ -6,11 +6,6 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import { App } from './App';
 import Navigation from './Navigation/Navigation';
-import Carousels from './MainBody/Carousels/Carousels';
-import SearchPage from './MainBody/SearchPage/SearchPage';
-import MovieDetailPage from './MainBody/MovieDetailPage/MovieDetailPage';
-import Categories from './MainBody/Categories/Categories';
-import VideoPlayer from './VideoPlayer/VideoPlayer';
 
 configure({ adapter: new Adapter() });
 

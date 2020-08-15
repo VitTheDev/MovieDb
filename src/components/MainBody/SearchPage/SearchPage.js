@@ -17,35 +17,28 @@ export class SearchPage extends Component {
   };
 
   handleSearchButtonClick = (e) => {
-    this.setState({ query: this.state.searchInputValue });
+    this.setState({ query: this.state.searchInputValue, searchInputValue: '' });
   };
 
-  renderCarousels = () => {
-    if (this.state.query !== '') {
-      return (
-        <div>
-          <SingleCarousel
-            header={`Showing movie results for ${this.state.query}`}
-            query={this.state.query}
-            actionType="SEARCH_MOVIE"
-            apiEndpoint="/search/movie"
-            type="movie"
-          />
-          <SingleCarousel
-            header={`Showing Tv results for ${this.state.query}`}
-            query={this.state.query}
-            actionType="SEARCH_TV"
-            apiEndpoint="/search/tv"
-            type="tv"
-          />
-        </div>
-      );
-    } else
-      return (
-        <div>
-          <h5>Enter a query</h5>
-        </div>
-      );
+  renderCarousels = (query) => {
+    return (
+      <div>
+        <SingleCarousel
+          header={`Showing movie results for ${query}`}
+          query={query}
+          actionType="SEARCH_MOVIE"
+          apiEndpoint="/search/movie"
+          type="movie"
+        />
+        <SingleCarousel
+          header={`Showing Tv results for ${query}`}
+          query={query}
+          actionType="SEARCH_TV"
+          apiEndpoint="/search/tv"
+          type="tv"
+        />
+      </div>
+    );
   };
 
   render() {
@@ -56,7 +49,13 @@ export class SearchPage extends Component {
           value={this.state.searchInputValue}
           handleChange={this.handleSearchInputChange}
         />
-        {this.renderCarousels()}
+        {this.state.query ? (
+          this.renderCarousels(this.state.query)
+        ) : (
+          <div>
+            <h5>Please enter a query</h5>
+          </div>
+        )}
       </div>
     );
   }

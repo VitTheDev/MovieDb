@@ -26,7 +26,6 @@ export const fetchMovies = (apiEndpoint, actionType, genres = null) => async (
 export const fetchMovieDetail = (id, isType, genre = null) => async (
   dispatch
 ) => {
-  console.log(isType);
   const response = await movieDb.get(
     `/${isType}/${id}?api_key=${apiKey}&language=en-US&append_to_response=videos`
   );

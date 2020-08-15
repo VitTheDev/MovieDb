@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchCategories } from '../../actions';
 import classes from './Categories.module.css';
 import SingleCarousel from '../Carousels/SingleCarousel/SingleCarousel';
+import Spinner from '../../UI/Spinner';
 
 export class Categories extends Component {
   state = {
@@ -58,9 +59,7 @@ export class Categories extends Component {
       );
     }
 
-    return (
-      <h1>Couldn't load resource. Please check your internet connection</h1>
-    );
+    return <Spinner />;
   }
 }
 

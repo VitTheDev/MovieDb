@@ -13,6 +13,7 @@ export class SingleCarousel extends Component {
     loading: false,
   };
   componentDidMount() {
+    console.log('rerendering');
     this.setState({ loading: true });
     try {
       if (this.props.actionType === 'SEARCH_MOVIE') {
@@ -50,11 +51,28 @@ export class SingleCarousel extends Component {
       );
       this.setState({ currentPage: 0 });
     }
+    if (prevProps.query !== this.props.query) {
+      try {
+        if (this.props.actionType === 'SEARCH_MOVIE') {
+          this.props.searchForMovie(this.props.query);
+        } else if (this.props.actionType === 'SEARCH_TV') {
+          this.props.searchForTvShow(this.props.query);
+        } else {
+          this.props.fetchMovies(
+            this.props.apiEndpoint,
+            this.props.actionType,
+            this.props.genre
+          );
+        }
+      } catch {
+        this.handleNetworkError();
+      }
+    }
     return false;
   }
 
   renderFetchedList = () => {
-    if (this.props.dataToDisplay.length) {
+    if (this.props.dataToDisplay) {
       const slicedMovies = this.props.dataToDisplay
         .slice(
           this.props.moviesPerPage * this.state.currentPage,
@@ -63,10 +81,17 @@ export class SingleCarousel extends Component {
         .map((movie) => (
           <Link to={`/${this.props.type}/${movie.id}`} key={movie.id}>
             <div>
-              <img
-                src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
-                alt={movie.title ? movie.title : movie.name}
-              />
+              {movie.poster_path ? (
+                <img
+                  src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+                  alt={movie.title ? movie.title : movie.name}
+                />
+              ) : (
+                <h3>
+                  {movie.title}
+                  <span> Image Not Avaliable</span>
+                </h3>
+              )}
             </div>
           </Link>
         ));
@@ -99,7 +124,7 @@ export class SingleCarousel extends Component {
   };
 
   render() {
-    if (this.state.loading) {
+    if (!this.props.dataToDisplay) {
       return <Spinner />;
     } else {
       return (

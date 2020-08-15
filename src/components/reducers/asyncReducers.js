@@ -14,7 +14,7 @@ export const popularTvReducer = (state = {}, action) => {
 
 export const movieDetailReducer = (state = {}, action) => {
   if (action.type === 'FETCH_MOVIE_DETAIL') {
-    return { ...state, ...action.payload };
+    return { ...state, movie: action.payload };
   }
   return state;
 };

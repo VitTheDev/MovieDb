@@ -19,6 +19,7 @@ export class MovieDetailPage extends Component {
 
   componentDidUpdate = (prevProps) => {
     if (prevProps.movie !== this.props.movie) {
+      console.log(this.props.movie);
       this.setState({ loading: false });
     }
   };
@@ -31,7 +32,7 @@ export class MovieDetailPage extends Component {
       return (
         <div className={classes.MovieDetail}>
           <div className={classes.Content}>
-            <h2>{movie.title}</h2>
+            <h2>{movie.name ? movie.name : movie.title}</h2>
             <h4>Description</h4>
             <p>{movie.overview}</p>
             <h4>Stats:</h4>
@@ -60,7 +61,7 @@ export class MovieDetailPage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    movie: state.movieDetail,
+    movie: state.movieDetail.movie,
   };
 };
 
