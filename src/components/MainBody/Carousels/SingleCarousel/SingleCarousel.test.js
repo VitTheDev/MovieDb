@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 configure({ adapter: new Adapter() });
 
-describe('render the bitch', () => {
+describe('SingleCarousel Component renders', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(<SingleCarousel />);

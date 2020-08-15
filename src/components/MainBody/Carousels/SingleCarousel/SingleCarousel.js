@@ -13,7 +13,6 @@ export class SingleCarousel extends Component {
     loading: false,
   };
   componentDidMount() {
-    console.log('rerendering');
     this.setState({ loading: true });
     try {
       if (this.props.actionType === 'SEARCH_MOVIE') {
@@ -80,7 +79,7 @@ export class SingleCarousel extends Component {
         )
         .map((movie) => (
           <Link to={`/${this.props.type}/${movie.id}`} key={movie.id}>
-            <div>
+            <div className={classes.Poster}>
               {movie.poster_path ? (
                 <img
                   src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
@@ -102,6 +101,7 @@ export class SingleCarousel extends Component {
   };
 
   hideSpinner = () => {
+    console.log('heeeeeeeeeeey');
     setTimeout(() => {
       this.setState({ loading: false });
     }, 200);
@@ -124,7 +124,7 @@ export class SingleCarousel extends Component {
   };
 
   render() {
-    if (!this.props.dataToDisplay) {
+    if (!this.props.dataToDisplay || this.state.loading) {
       return <Spinner />;
     } else {
       return (
@@ -133,7 +133,7 @@ export class SingleCarousel extends Component {
           <div className={classes.SingleCarousel}>
             <div className={classes.Image}>
               <button
-                className="btn"
+                className={classes.BtnLeft}
                 disabled={this.state.currentPage <= 0}
                 onClick={this.renderPrevPage}
               >
@@ -143,7 +143,7 @@ export class SingleCarousel extends Component {
             {this.renderFetchedList()}
             <div className={classes.Image}>
               <button
-                className="btn"
+                className={classes.BtnRight}
                 disabled={
                   this.state.currentPage >=
                   Math.floor(

@@ -32,3 +32,34 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.BtnRight {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.BtnRight:hover {
+  transform: scale(1.3) translateX(20px);
+  transition: transform 0.5s ease-in-out;
+}
+.BtnLeft {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.BtnLeft:hover {
+  transform: scale(1.3) translateX(-20px);
+  transition: transform 0.5s ease-in-out;
+}
+
+.Poster {
+  transition: transform 0.5s ease-in-out;
+}
+
+.Poster:hover {
+  transform: scale(1.5);
+  transition: transform 0.5s ease-in-out;
+  z-index: 15;
+}
