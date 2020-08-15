@@ -1,0 +1,24 @@
+.MovieDetail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 90%;
+  grid-gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.Content {
+  text-align: left;
+  padding: 1rem;
+}
+
+.movieDetail img {
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .MovieDetail {
+    grid-template-columns: 1fr;
+  }
+}

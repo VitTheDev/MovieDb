@@ -1,0 +1,19 @@
+.Categories {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.GenreList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  margin: 1rem 1rem 4rem 1rem;
+  list-style: none;
+}
+
+.GenreList li {
+  margin: 0.5rem;
+}

@@ -1,0 +1,34 @@
+.CarouselWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.CarouselWrapper h4 {
+  text-align: center;
+}
+
+.SingleCarousel {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 1rem;
+  margin: 1rem auto;
+}
+
+.Image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .SingleCarousel {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .SingleCarousel {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
