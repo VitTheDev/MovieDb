@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import {
   popularMovieReducer,
   popularTvReducer,
@@ -27,5 +26,4 @@ export default combineReducers({
   selectedGenre: selectedGenreReducer,
   movieSearch: searchMovieReducer,
   tvSearch: searchTvReducer,
-  form: formReducer,
 });
