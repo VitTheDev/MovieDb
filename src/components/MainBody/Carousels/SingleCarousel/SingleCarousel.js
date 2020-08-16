@@ -77,23 +77,33 @@ export class SingleCarousel extends Component {
           this.props.moviesPerPage * this.state.currentPage,
           (this.state.currentPage + 1) * this.props.moviesPerPage
         )
-        .map((movie) => (
-          <Link to={`/${this.props.type}/${movie.id}`} key={movie.id}>
-            <div className={classes.Poster}>
-              {movie.poster_path ? (
-                <img
-                  src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
-                  alt={movie.title ? movie.title : movie.name}
-                />
-              ) : (
-                <h3>
-                  {movie.title}
-                  <span> Image Not Avaliable</span>
-                </h3>
-              )}
-            </div>
-          </Link>
-        ));
+        .map((movie) => {
+          if (movie.poster_path) {
+            return (
+              <Link to={`/${this.props.type}/${movie.id}`} key={movie.id}>
+                <div className={classes.Poster}>
+                  {
+                    <img
+                      src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+                      alt={movie.title ? movie.title : movie.name}
+                    />
+                  }
+                </div>
+              </Link>
+            );
+          } else
+            return (
+              <h3
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <span>Not Avaliable</span>
+              </h3>
+            );
+        });
       return slicedMovies;
     } else {
       return <div>{this.handleNetworkError()}</div>;
